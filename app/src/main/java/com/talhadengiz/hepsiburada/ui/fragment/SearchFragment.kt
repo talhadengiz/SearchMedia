@@ -1,33 +1,48 @@
 package com.talhadengiz.hepsiburada.ui.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.talhadengiz.hepsiburada.R
+import com.talhadengiz.hepsiburada.databinding.SearchFragmentBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.SearchViewModel
 
 class SearchFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SearchFragment()
-    }
-
     private lateinit var viewModel: SearchViewModel
+
+    private var _binding: SearchFragmentBinding? = null
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.search_fragment, container, false)
+        _binding = SearchFragmentBinding.inflate(inflater,container,false)
+        return binding?.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+        eventHandler()
+    }
+
+    private fun init(){
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
+    }
+
+    private fun eventHandler(){
+        binding?.etSearch?.addTextChangedListener { editable ->
+            editable?.let {
+                viewModel.getData(editable.toString())
+            }
+        }
     }
 
 }

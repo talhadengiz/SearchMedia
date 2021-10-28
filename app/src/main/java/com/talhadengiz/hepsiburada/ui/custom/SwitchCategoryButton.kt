@@ -20,8 +20,8 @@ class SwitchCategoryButton(context: Context, attrs: AttributeSet? = null) :
     }
 
     enum class Category(val queryName: String) { // todo queryName
-        MOVIE("MOVIE"), MUSIC("MUSIC"),
-        APP("APP"), BOOK("BOOK")
+        MOVIE("movie"), MUSIC("music"),
+        APP("software"), BOOK("ebook")
     }
 
     var onSelectionChanged: ((Category) -> Unit)? = null
@@ -63,7 +63,7 @@ class SwitchCategoryButton(context: Context, attrs: AttributeSet? = null) :
             tvApp.moveSelection()
         }
         tvBook.setOnClickListener {
-            changeSelection(Category.APP)
+            changeSelection(Category.BOOK)
             tvBook.moveSelection()
         }
 

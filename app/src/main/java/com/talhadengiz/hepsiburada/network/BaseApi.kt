@@ -7,5 +7,8 @@ import retrofit2.http.Query
 
 interface BaseApi {
     @GET("search?")
-    suspend fun getData(@Query("term") searchTerm:String): Response<DataResponse>
+    suspend fun getData(
+        @Query("term") searchTerm: String,
+        @Query("media") media: String
+    ): Response<DataResponse>
 }

@@ -25,6 +25,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding
     private lateinit var searchAdapter: SearchRecyclerViewAdapter
+    private lateinit var media:String
+    private var term:String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +39,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        eventHandler()
         observe()
-        binding?.switchControl?.onSelectionChanged = ::onSwitchChanged
-        binding?.switchControl?.setCategory(0)
+        eventHandler()
     }
 
     private fun init() {
@@ -53,9 +53,12 @@ class SearchFragment : Fragment() {
     }
 
     private fun eventHandler() {
+        binding?.switchControl?.onSelectionChanged = ::onSwitchChanged
+        binding?.switchControl?.setCategory(0)
         binding?.etSearch?.addTextChangedListener { editable ->
             editable?.let {
-                viewModel.getData(editable.toString())
+                term = it.toString()
+                viewModel.getData(editable.toString(), media)
             }
         }
 
@@ -77,12 +80,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun onSwitchChanged(category: SwitchCategoryButton.Category) {
-        /*startDate = when (category.ordinal) {
-            0 -> endDate.minusMonths(3)
-            1 -> endDate.minusMonths(6)
-            else -> endDate.minusMonths(12)
-        }
-        getReport()*/
+        media = category.queryName
+        viewModel.getData(term,media)
     }
 
 }

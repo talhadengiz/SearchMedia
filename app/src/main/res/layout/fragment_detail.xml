@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.fragment.DetailFragment">
 
-    <ImageView
-        android:id="@+id/iv_item_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="200dp"
-        android:paddingTop="10dp"
-        android:scaleType="fitCenter" />
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <include
+           android:id="@+id/i_movie"
+           layout="@layout/fragment_detail_movie"
+           android:visibility="gone"/>
+       <include
+           android:id="@+id/i_music"
+           layout="@layout/fragment_detail_music"
+           android:visibility="gone"/>
+       <include
+           android:id="@+id/i_app"
+           layout="@layout/fragment_detail_app"
+           android:visibility="gone"/>
+       <include
+           android:id="@+id/i_book"
+           layout="@layout/fragment_detail_book"
+           android:visibility="gone"/>
+   </FrameLayout>
 
-    <TextView
-        android:id="@+id/tv_collection_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv_collection_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_release_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:textSize="16sp" />
-
-</LinearLayout>
+</ScrollView>

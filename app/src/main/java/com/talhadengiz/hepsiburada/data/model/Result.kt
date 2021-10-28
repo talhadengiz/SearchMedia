@@ -33,5 +33,10 @@ data class Result(
     val trackPrice: Double,
     val trackTimeMillis: Int,
     val trackViewUrl: String,
-    val wrapperType: String
+    val wrapperType: String,
+
+    val longDescription:String,
+
+    val price:Double,
+    val description:String
 ) : Serializable

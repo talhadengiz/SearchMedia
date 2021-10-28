@@ -65,6 +65,7 @@ class SearchFragment : Fragment() {
         searchAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("search", it)
+                putString("media",media)
             }
             findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
         }
@@ -73,7 +74,6 @@ class SearchFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun observe() {
         viewModel.dataLiveData.observe(viewLifecycleOwner, {
-            Log.d("test", it.results.toString())
             searchAdapter.resultList = it.results
             searchAdapter.notifyDataSetChanged()
         })

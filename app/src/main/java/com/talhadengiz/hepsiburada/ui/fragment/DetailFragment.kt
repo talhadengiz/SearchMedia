@@ -1,16 +1,17 @@
 package com.talhadengiz.hepsiburada.ui.fragment
 
-import androidx.lifecycle.ViewModelProvider
+import android.media.session.MediaController
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.FragmentDetailBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.DetailFragmentVM
+import com.talhadengiz.hepsiburada.util.convertToDateFormat
 import com.talhadengiz.hepsiburada.util.downloadFromUrl
 import com.talhadengiz.hepsiburada.util.placeHolderProgressBar
 
@@ -20,6 +21,7 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var search: Result
+    private lateinit var media: String
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -34,23 +36,111 @@ class DetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         init()
         setData()
+        showLayout(media)
     }
 
     private fun init() {
         viewModel = ViewModelProvider(this).get(DetailFragmentVM::class.java)
         search = args.search
+        media = args.media
     }
 
     private fun setData() {
-        binding.ivItemDetail.apply {
-            downloadFromUrl(
-                search.artworkUrl100,
-                placeHolderProgressBar(context)
-            )
+        when (media) {
+            "movie" -> {
+                binding.iMovie.apply {
+                    ivItemDetail.downloadFromUrl(
+                        search.artworkUrl100,
+                        placeHolderProgressBar(requireContext())
+                    )
+
+                    tvCollectionName.text = search.collectionName
+                    tvCollectionPrice.text = search.collectionPrice.toString()
+                    tvReleaseDate.text =
+                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                    tvPrimaryGenreName.text = search.primaryGenreName
+                    tvLongDescription.text = search.longDescription
+                    vv.setVideoPath(search.previewUrl)
+                    vv.stopPlayback()
+                    vv.start()
+                }
+            }
+            "music" -> {
+                binding.iMusic.apply {
+                    ivItemDetail.downloadFromUrl(
+                        search.artworkUrl100,
+                        placeHolderProgressBar(requireContext())
+                    )
+
+                    tvCollectionName.text = search.collectionName
+                    tvCollectionPrice.text = search.collectionPrice.toString()
+                    tvReleaseDate.text =
+                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                    tvPrimaryGenreName.text = search.primaryGenreName
+                    vv.setVideoPath(search.previewUrl)
+                    vv.stopPlayback()
+                    vv.start()
+                }
+            }
+            "software" -> {
+                binding.iApp.apply {
+                    ivItemDetail.downloadFromUrl(
+                        search.artworkUrl100,
+                        placeHolderProgressBar(requireContext())
+                    )
+
+                    tvCollectionName.text = search.trackName
+                    tvCollectionPrice.text = search.price.toString()
+                    tvReleaseDate.text =
+                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                    tvPrimaryGenreName.text = search.primaryGenreName
+                    tvLongDescription.text = search.description
+                }
+            }
+            "ebook" -> {
+                binding.iBook.apply {
+                    ivItemDetail.downloadFromUrl(
+                        search.artworkUrl100,
+                        placeHolderProgressBar(requireContext())
+                    )
+
+                    tvCollectionName.text = search.trackName
+                    tvCollectionPrice.text = search.price.toString()
+                    tvReleaseDate.text =
+                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                    tvPrimaryGenreName.text = search.primaryGenreName
+                    tvLongDescription.text = search.description
+                }
+            }
         }
-        binding.tvCollectionName.text = search.collectionName
-        binding.tvCollectionPrice.text = search.collectionPrice.toString()
-        binding.tvReleaseDate.text = search.releaseDate
     }
 
+    private fun showLayout(media: String) {
+        when (media) {
+            "movie" -> {
+                binding.iMovie.root.visibility = View.VISIBLE
+                binding.iMusic.root.visibility = View.GONE
+                binding.iApp.root.visibility = View.GONE
+                binding.iBook.root.visibility = View.GONE
+            }
+            "music" -> {
+                binding.iMovie.root.visibility = View.GONE
+                binding.iMusic.root.visibility = View.VISIBLE
+                binding.iApp.root.visibility = View.GONE
+                binding.iBook.root.visibility = View.GONE
+            }
+            "software" -> {
+                binding.iMovie.root.visibility = View.GONE
+                binding.iMusic.root.visibility = View.GONE
+                binding.iApp.root.visibility = View.VISIBLE
+                binding.iBook.root.visibility = View.GONE
+            }
+            "ebook" -> {
+                binding.iMovie.root.visibility = View.GONE
+                binding.iMusic.root.visibility = View.GONE
+                binding.iApp.root.visibility = View.GONE
+                binding.iBook.root.visibility = View.VISIBLE
+            }
+        }
+    }
 }

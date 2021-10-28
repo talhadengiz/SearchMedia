@@ -22,5 +22,8 @@
         <argument
             android:name="search"
             app:argType="com.talhadengiz.hepsiburada.data.model.Result" />
+        <argument
+            android:name="media"
+            app:argType="string" />
     </fragment>
 </navigation>

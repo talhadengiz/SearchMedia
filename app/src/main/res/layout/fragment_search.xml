@@ -9,7 +9,18 @@
     <EditText
         android:id="@+id/et_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_et_search"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="16dp"
+        android:hint="Search..."
+        android:padding="12dp"
+        android:textColorHint="#FFDA6317"
+        android:textColor="#FFDA6317"
+        android:textSize="12sp"/>
 
     <com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
         android:id="@+id/switchControl"

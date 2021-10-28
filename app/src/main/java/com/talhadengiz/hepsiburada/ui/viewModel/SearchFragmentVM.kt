@@ -17,7 +17,7 @@ class SearchFragmentVM : ViewModel() {
 
     fun getData(searchQuery: String, media: String) = viewModelScope.launch {
         try {
-            val response = repository.remoteDataSource.getDataFromApi(searchQuery,media)
+            val response = repository.remoteDataSource.getDataFromApi(searchQuery,media )
             Log.d("Test", "Data: ${response.body()}")
 
             if (response.isSuccessful) {

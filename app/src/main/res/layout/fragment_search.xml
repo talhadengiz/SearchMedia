@@ -11,6 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
+        android:id="@+id/switchControl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_data"
         android:layout_marginTop="12dp"

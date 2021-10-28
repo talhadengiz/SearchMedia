@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.adapter.SearchRecyclerViewAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentSearchBinding
+import com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
 import com.talhadengiz.hepsiburada.ui.viewModel.SearchFragmentVM
 
 class SearchFragment : Fragment() {
@@ -38,6 +39,8 @@ class SearchFragment : Fragment() {
         init()
         eventHandler()
         observe()
+        binding?.switchControl?.onSelectionChanged = ::onSwitchChanged
+        binding?.switchControl?.setCategory(0)
     }
 
     private fun init() {
@@ -71,6 +74,15 @@ class SearchFragment : Fragment() {
             searchAdapter.resultList = it.results
             searchAdapter.notifyDataSetChanged()
         })
+    }
+
+    private fun onSwitchChanged(category: SwitchCategoryButton.Category) {
+        /*startDate = when (category.ordinal) {
+            0 -> endDate.minusMonths(3)
+            1 -> endDate.minusMonths(6)
+            else -> endDate.minusMonths(12)
+        }
+        getReport()*/
     }
 
 }

@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.adapter.SearchRecyclerViewAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentSearchBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.SearchFragmentVM
@@ -51,6 +54,13 @@ class SearchFragment : Fragment() {
             editable?.let {
                 viewModel.getData(editable.toString())
             }
+        }
+
+        searchAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("search", it)
+            }
+            findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
         }
     }
 

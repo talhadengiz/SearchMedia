@@ -1,5 +1,7 @@
 package com.talhadengiz.hepsiburada.data.model
 
+import java.io.Serializable
+
 data class Result(
     val artistId: Int,
     val artistName: String,
@@ -32,4 +34,4 @@ data class Result(
     val trackTimeMillis: Int,
     val trackViewUrl: String,
     val wrapperType: String
-)
+) : Serializable

@@ -38,7 +38,19 @@ class SearchRecyclerViewAdapter :
             resultList?.get(position)?.artworkUrl100,
             placeHolderProgressBar(holder.itemView.context)
         )
+
+        holder.binding.ivItem.setOnClickListener {
+            onItemClickListener?.let {
+                resultList?.get(position)?.let { it1 -> it(it1) }
+            }
+        }
     }
 
     override fun getItemCount(): Int = resultList!!.size
+
+    private var onItemClickListener: ((Result) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Result) -> Unit) {
+        onItemClickListener = listener
+    }
 }

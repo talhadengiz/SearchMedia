@@ -9,6 +9,7 @@ import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.data.repository.DataRepository
 import com.talhadengiz.hepsiburada.data.source.RemoteDataSource
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.io.IOException
 
 class SearchFragmentVM : ViewModel() {
@@ -17,11 +18,14 @@ class SearchFragmentVM : ViewModel() {
 
     fun getData(searchQuery: String, media: String) = viewModelScope.launch {
         try {
-            val response = repository.remoteDataSource.getDataFromApi(searchQuery,media )
-            Log.d("Test", "Data: ${response.body()}")
+            var response:Response<DataResponse>?=null
+            if(searchQuery.length>=2){
+                response = repository.remoteDataSource.getDataFromApi(searchQuery,media)
+            }
+            Log.d("Test", "Data: ${response?.body()}")
 
-            if (response.isSuccessful) {
-                dataLiveData.postValue(response.body())
+            if (response?.isSuccessful == true) {
+                dataLiveData.postValue(response?.body())
             }
         } catch (exception: IOException) {
             Log.d("Test", "exception: $exception")

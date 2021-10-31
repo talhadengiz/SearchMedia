@@ -14,6 +14,7 @@ This project is a simple movie, music, app and book search app. You can reach th
 - LiveData
 - Retrofit
 - Lottie
+- Paginate
 
 ## Screen Shots
 

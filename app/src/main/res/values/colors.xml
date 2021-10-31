@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="bg_item">#22F9A84D</color>
+    <color name="skip_color">#94F9A84D</color>
     <color name="search_text_color">#FFDA6317</color>
     <color name="page_indicator_color">#ff5c0e</color>
     <color name="indicator_color">#50bde2</color>

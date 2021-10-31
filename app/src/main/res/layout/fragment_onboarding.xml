@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="@dimen/dp_50"
     tools:context=".ui.fragment.OnboardingFragment">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -37,10 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:focusable="true"
         android:text="@string/skip"
+        android:textColor="@color/skip_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/page_indicator" />
+        app:layout_constraintTop_toBottomOf="@id/page_indicator"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

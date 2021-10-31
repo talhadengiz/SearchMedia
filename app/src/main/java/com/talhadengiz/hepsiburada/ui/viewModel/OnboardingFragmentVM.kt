@@ -8,19 +8,19 @@ class OnboardingFragmentVM : ViewModel(){
     val sliderList: Array<OnboardingItem> = arrayOf(
         OnboardingItem(
             resId = R.drawable.img_movie,
-            title = "Lorem Ipsum"
+            title = "Search Movie"
         ),
         OnboardingItem(
             resId = R.drawable.img_music,
-            title = "Lorem Ipsum"
+            title = "Search Music"
         ),
         OnboardingItem(
             resId = R.drawable.img_app,
-            title = "Lorem Ipsum"
+            title = "Search App"
         ),
         OnboardingItem(
             resId = R.drawable.img_ebook,
-            title = "Lorem Ipsum"
+            title = "Seerch E-Book"
         )
     )
 }

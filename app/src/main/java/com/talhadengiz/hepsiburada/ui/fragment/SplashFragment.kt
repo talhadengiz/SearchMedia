@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.databinding.FragmentSplashBinding
+import com.talhadengiz.hepsiburada.util.SharedPrefHelper
 
 class SplashFragment : Fragment() {
 
@@ -18,7 +19,11 @@ class SplashFragment : Fragment() {
     private val lottieAnimatorListener = object : Animator.AnimatorListener {
         override fun onAnimationStart(animation: Animator?) {}
         override fun onAnimationEnd(animation: Animator?) {
-           findNavController().navigate(R.id.action_splashFragment_to_searchFragment)
+            if (isSkipedOnboarding()) {
+                findNavController().navigate(R.id.action_splashFragment_to_searchFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_onboardingFragment)
+            }
         }
 
         override fun onAnimationCancel(animation: Animator?) {}
@@ -43,4 +48,7 @@ class SplashFragment : Fragment() {
         binding.lottieAnimationView.addAnimatorListener(lottieAnimatorListener)
     }
 
+    private fun isSkipedOnboarding(): Boolean {
+        return SharedPrefHelper(requireContext()).isSkipedOnboarding()
+    }
 }

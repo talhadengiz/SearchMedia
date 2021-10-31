@@ -13,6 +13,7 @@ import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.adapter.OnboardingViewPagerAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentOnboardingBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.OnboardingFragmentVM
+import com.talhadengiz.hepsiburada.util.SharedPrefHelper
 
 class OnboardingFragment : Fragment() {
 
@@ -42,12 +43,14 @@ class OnboardingFragment : Fragment() {
             lifecycle
         )
 
+        binding.pageIndicator.count = viewModel.sliderList.size
         viewModel.sliderList.forEach {
             val fragment = ItemOnboardingFragment(it.resId, it.title)
             viewPagerAdapter.addFragment(fragment)
         }
 
         binding.tvSkip.setOnClickListener {
+            SharedPrefHelper(requireContext()).saveOnboardingSkip()
             findNavController().navigate(R.id.action_onboardingFragment_to_searchFragment)
         }
         binding.vpOnboarding.adapter = viewPagerAdapter

@@ -33,10 +33,14 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_splashFragment_to_onboardingFragment"
-            app:destination="@id/onboardingFragment" />
+            app:destination="@id/onboardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -45,6 +49,8 @@
         tools:layout="@layout/fragment_onboarding" >
         <action
             android:id="@+id/action_onboardingFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/onboardingFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>

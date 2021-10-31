@@ -46,7 +46,7 @@ class DetailFragment : Fragment() {
         media = args.media
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "SetTextI18n")
     private fun setData() {
         when (media) {
             "movie" -> {
@@ -56,10 +56,10 @@ class DetailFragment : Fragment() {
                         placeHolderProgressBar(requireContext())
                     )
 
-                    detailCardview.tvCollectionName.text = search.collectionName
+                    detailCardview.tvCollectionName.text = search.collectionName ?: search.trackName
                     detailCardview.tvCollectionPrice.text = "$" + search.collectionPrice.toString()
                     detailCardview.tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat(
+                        search.releaseDate?.convertToDateFormat(
                             Format.FROM_DATE_FORMAT,
                             Format.TO_DATE_FORMAT
                         )
@@ -79,7 +79,7 @@ class DetailFragment : Fragment() {
 
                     detailCardview.tvCollectionName.text = search.collectionName
                     detailCardview.tvCollectionPrice.text = search.collectionPrice.toString()
-                    search.releaseDate.convertToDateFormat(
+                    detailCardview.tvReleaseDate.text = search.releaseDate?.convertToDateFormat(
                         Format.FROM_DATE_FORMAT,
                         Format.TO_DATE_FORMAT
                     )
@@ -102,7 +102,7 @@ class DetailFragment : Fragment() {
                             return true
                         }
                     }
-                    webView.loadUrl(search.trackViewUrl)
+                    search.trackViewUrl?.let { webView.loadUrl(it) }
                 }
             }
             "ebook" -> {
@@ -113,13 +113,13 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.trackName
-                    detailCardview.tvCollectionPrice.text = "$" +search.price.toString()
-                    search.releaseDate.convertToDateFormat(
+                    detailCardview.tvCollectionPrice.text = "$" + search.price.toString()
+                    detailCardview.tvReleaseDate.text = search.releaseDate?.convertToDateFormat(
                         Format.FROM_DATE_FORMAT,
                         Format.TO_DATE_FORMAT
                     )
                     tvPrimaryGenreName.text = search.primaryGenreName ?: search.trackName
-                    tvLongDescription.text = search.description.fromHtml()
+                    tvLongDescription.text = search.description?.fromHtml()
                 }
             }
         }

@@ -14,10 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.FragmentDetailBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.DetailFragmentVM
-import com.talhadengiz.hepsiburada.util.convertToDateFormat
-import com.talhadengiz.hepsiburada.util.downloadFromUrl
-import com.talhadengiz.hepsiburada.util.fromHtml
-import com.talhadengiz.hepsiburada.util.placeHolderProgressBar
+import com.talhadengiz.hepsiburada.util.*
 
 class DetailFragment : Fragment() {
 
@@ -63,8 +60,8 @@ class DetailFragment : Fragment() {
                     detailCardview.tvCollectionPrice.text = "$" + search.collectionPrice.toString()
                     detailCardview.tvReleaseDate.text =
                         search.releaseDate.convertToDateFormat(
-                            "yyyy-MM-dd'T'HH:mm:sss",
-                            "dd.MM.yyyy"
+                            Format.FROM_DATE_FORMAT,
+                            Format.TO_DATE_FORMAT
                         )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.longDescription
@@ -82,11 +79,10 @@ class DetailFragment : Fragment() {
 
                     detailCardview.tvCollectionName.text = search.collectionName
                     detailCardview.tvCollectionPrice.text = search.collectionPrice.toString()
-                    detailCardview.tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat(
-                            "yyyy-MM-dd'T'HH:mm:sss",
-                            "dd.MM.yyyy"
-                        )
+                    search.releaseDate.convertToDateFormat(
+                        Format.FROM_DATE_FORMAT,
+                        Format.TO_DATE_FORMAT
+                    )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     vvMedia.setVideoPath(search.previewUrl)
                     vvMedia.stopPlayback()
@@ -117,12 +113,11 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.trackName
-                    detailCardview.tvCollectionPrice.text = search.price.toString()
-                    detailCardview.tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat(
-                            "yyyy-MM-dd'T'HH:mm:sss",
-                            "dd.MM.yyyy"
-                        )
+                    detailCardview.tvCollectionPrice.text = "$" +search.price.toString()
+                    search.releaseDate.convertToDateFormat(
+                        Format.FROM_DATE_FORMAT,
+                        Format.TO_DATE_FORMAT
+                    )
                     tvPrimaryGenreName.text = search.primaryGenreName ?: search.trackName
                     tvLongDescription.text = search.description.fromHtml()
                 }

@@ -19,6 +19,7 @@ import com.talhadengiz.hepsiburada.data.adapter.SearchRecyclerViewAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentSearchBinding
 import com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
 import com.talhadengiz.hepsiburada.ui.viewModel.SearchFragmentVM
+import com.talhadengiz.hepsiburada.util.Constants
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -70,7 +71,7 @@ class SearchFragment : Fragment() {
         binding?.etSearch?.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
-                delay(500L)
+                delay(Constants.DELAY_TIME)
                 editable?.let {
                     //isLoading = true
                     viewModel.getData(editable.toString(), media)

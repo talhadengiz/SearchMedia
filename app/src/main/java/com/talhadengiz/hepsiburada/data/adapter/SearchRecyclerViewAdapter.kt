@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.talhadengiz.hepsiburada.data.model.DataResponse
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.ItemRecyclerviewBinding
+import com.talhadengiz.hepsiburada.util.Format
 import com.talhadengiz.hepsiburada.util.convertToDateFormat
 import com.talhadengiz.hepsiburada.util.downloadFromUrl
 import com.talhadengiz.hepsiburada.util.placeHolderProgressBar
@@ -49,7 +50,8 @@ class SearchRecyclerViewAdapter :
 
         holder.binding.tvCollectionName.text = media.collectionName ?: media.trackName
         holder.binding.tvCollectionPrice.text = "$" + media.collectionPrice.toString()
-        holder.binding.tvReleaseDate.text = media.releaseDate?.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss","dd.MM.yyyy")
+        holder.binding.tvReleaseDate.text =
+            media.releaseDate?.convertToDateFormat(Format.FROM_DATE_FORMAT, Format.TO_DATE_FORMAT)
 
 
         holder.binding.ivItem.downloadFromUrl(

@@ -1,9 +1,13 @@
 package com.talhadengiz.hepsiburada.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -44,6 +48,7 @@ class DetailFragment : Fragment() {
         media = args.media
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setData() {
         when (media) {
             "movie" -> {
@@ -89,20 +94,18 @@ class DetailFragment : Fragment() {
             }
             "software" -> {
                 binding.iApp.apply {
-                    ivItemDetail.downloadFromUrl(
-                        search.artworkUrl100,
-                        placeHolderProgressBar(requireContext())
-                    )
-
-                    tvCollectionName.text = search.trackName
-                    tvCollectionPrice.text = "$" + search.price.toString()
-                    tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat(
-                            "yyyy-MM-dd'T'HH:mm:sss",
-                            "dd.MM.yyyy"
-                        )
-                    tvPrimaryGenreName.text = search.primaryGenreName
-                    tvLongDescription.text = search.description
+                    webView.settings.javaScriptEnabled = true
+                    webView.settings.javaScriptCanOpenWindowsAutomatically = true
+                    webView.webViewClient = object : WebViewClient() {
+                        override fun shouldOverrideUrlLoading(
+                            view: WebView,
+                            request: WebResourceRequest
+                        ): Boolean {
+                            view.loadUrl(request.url.toString())
+                            return true
+                        }
+                    }
+                    webView.loadUrl(search.trackViewUrl)
                 }
             }
             "ebook" -> {

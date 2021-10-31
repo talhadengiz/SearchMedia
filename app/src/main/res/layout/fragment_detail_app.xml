@@ -7,72 +7,11 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.DetailFragment">
 
-    <ImageView
-        android:id="@+id/iv_item_detail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxWidth="@dimen/dp_200"
-        android:maxHeight="@dimen/dp_200"
-        android:minWidth="@dimen/dp_152"
-        android:minHeight="@dimen/dp_152"
-        android:paddingTop="@dimen/dp_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_collection_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_4"
-        android:textColor="@color/orange"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textSize="20sp"
-        android:textStyle="bold"
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_item_detail"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_collection_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="16sp"
-        android:textColor="@color/bg_switch_category"
-        app:layout_constraintStart_toEndOf="@id/iv_item_detail"
-        app:layout_constraintBottom_toBottomOf="@id/iv_item_detail" />
-
-    <TextView
-        android:id="@+id/tv_release_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/iv_item_detail"/>
-
-    <TextView
-        android:id="@+id/tv_primary_genre_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="24sp"
-        android:textColor="@color/orange"
-        android:maxLines="2"
-        android:ellipsize="end"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_item_detail" />
-
-    <TextView
-        android:id="@+id/tv_long_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_primary_genre_name" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

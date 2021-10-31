@@ -1,4 +1,4 @@
-package com.talhadengiz.hepsiburada.ui.viewModel
+package com.talhadengiz.hepsiburada.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

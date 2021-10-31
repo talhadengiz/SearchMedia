@@ -2,7 +2,6 @@ package com.talhadengiz.hepsiburada.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.adapter.SearchRecyclerViewAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentSearchBinding
 import com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
-import com.talhadengiz.hepsiburada.ui.viewModel.SearchFragmentVM
+import com.talhadengiz.hepsiburada.viewModel.SearchFragmentVM
 import com.talhadengiz.hepsiburada.util.Constants
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope

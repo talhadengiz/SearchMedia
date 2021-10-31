@@ -12,7 +12,7 @@ import com.rd.animation.type.AnimationType
 import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.adapter.OnboardingViewPagerAdapter
 import com.talhadengiz.hepsiburada.databinding.FragmentOnboardingBinding
-import com.talhadengiz.hepsiburada.ui.viewModel.OnboardingFragmentVM
+import com.talhadengiz.hepsiburada.viewModel.OnboardingFragmentVM
 import com.talhadengiz.hepsiburada.util.SharedPrefHelper
 
 class OnboardingFragment : Fragment() {

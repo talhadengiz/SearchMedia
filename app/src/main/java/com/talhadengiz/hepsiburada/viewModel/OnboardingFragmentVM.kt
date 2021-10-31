@@ -1,4 +1,4 @@
-package com.talhadengiz.hepsiburada.ui.viewModel
+package com.talhadengiz.hepsiburada.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.talhadengiz.hepsiburada.R

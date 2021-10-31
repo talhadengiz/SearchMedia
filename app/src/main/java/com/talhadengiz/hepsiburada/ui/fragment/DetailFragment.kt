@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.FragmentDetailBinding
-import com.talhadengiz.hepsiburada.ui.viewModel.DetailFragmentVM
+import com.talhadengiz.hepsiburada.viewModel.DetailFragmentVM
 import com.talhadengiz.hepsiburada.util.*
 
 class DetailFragment : Fragment() {

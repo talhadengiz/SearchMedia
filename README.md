@@ -1,5 +1,3 @@
-# hepsiburada
-# İ. Talha Dengiz
 # Hepsiburada Mobile Team Case Study 
 
 ## Project

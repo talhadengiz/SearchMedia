@@ -16,6 +16,7 @@ import com.talhadengiz.hepsiburada.databinding.FragmentDetailBinding
 import com.talhadengiz.hepsiburada.ui.viewModel.DetailFragmentVM
 import com.talhadengiz.hepsiburada.util.convertToDateFormat
 import com.talhadengiz.hepsiburada.util.downloadFromUrl
+import com.talhadengiz.hepsiburada.util.fromHtml
 import com.talhadengiz.hepsiburada.util.placeHolderProgressBar
 
 class DetailFragment : Fragment() {
@@ -110,20 +111,20 @@ class DetailFragment : Fragment() {
             }
             "ebook" -> {
                 binding.iBook.apply {
-                    ivItemDetail.downloadFromUrl(
+                    detailCardview.ivItemDetail.downloadFromUrl(
                         search.artworkUrl100,
                         placeHolderProgressBar(requireContext())
                     )
 
-                    tvCollectionName.text = search.trackName
-                    tvCollectionPrice.text = search.price.toString()
-                    tvReleaseDate.text =
+                    detailCardview.tvCollectionName.text = search.trackName
+                    detailCardview.tvCollectionPrice.text = search.price.toString()
+                    detailCardview.tvReleaseDate.text =
                         search.releaseDate.convertToDateFormat(
                             "yyyy-MM-dd'T'HH:mm:sss",
                             "dd.MM.yyyy"
                         )
-                    tvPrimaryGenreName.text = search.primaryGenreName
-                    tvLongDescription.text = search.description
+                    tvPrimaryGenreName.text = search.primaryGenreName ?: search.trackName
+                    tvLongDescription.text = search.description.fromHtml()
                 }
             }
         }

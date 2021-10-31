@@ -54,9 +54,12 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.collectionName
-                    detailCardview.tvCollectionPrice.text = "$"+search.collectionPrice.toString()
+                    detailCardview.tvCollectionPrice.text = "$" + search.collectionPrice.toString()
                     detailCardview.tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                        search.releaseDate.convertToDateFormat(
+                            "yyyy-MM-dd'T'HH:mm:sss",
+                            "dd.MM.yyyy"
+                        )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.longDescription
                     vvMedia.setVideoPath(search.previewUrl)
@@ -74,7 +77,10 @@ class DetailFragment : Fragment() {
                     detailCardview.tvCollectionName.text = search.collectionName
                     detailCardview.tvCollectionPrice.text = search.collectionPrice.toString()
                     detailCardview.tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                        search.releaseDate.convertToDateFormat(
+                            "yyyy-MM-dd'T'HH:mm:sss",
+                            "dd.MM.yyyy"
+                        )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     vvMedia.setVideoPath(search.previewUrl)
                     vvMedia.stopPlayback()
@@ -89,9 +95,12 @@ class DetailFragment : Fragment() {
                     )
 
                     tvCollectionName.text = search.trackName
-                    tvCollectionPrice.text = search.price.toString()
+                    tvCollectionPrice.text = "$" + search.price.toString()
                     tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                        search.releaseDate.convertToDateFormat(
+                            "yyyy-MM-dd'T'HH:mm:sss",
+                            "dd.MM.yyyy"
+                        )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.description
                 }
@@ -106,7 +115,10 @@ class DetailFragment : Fragment() {
                     tvCollectionName.text = search.trackName
                     tvCollectionPrice.text = search.price.toString()
                     tvReleaseDate.text =
-                        search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
+                        search.releaseDate.convertToDateFormat(
+                            "yyyy-MM-dd'T'HH:mm:sss",
+                            "dd.MM.yyyy"
+                        )
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.description
                 }

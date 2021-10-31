@@ -5,6 +5,5 @@ import androidx.lifecycle.ViewModel
 import com.talhadengiz.hepsiburada.data.model.Result
 
 class DetailFragmentVM : ViewModel() {
-    var search = MutableLiveData<String>()
-    var media = MutableLiveData<Result>()
+
 }

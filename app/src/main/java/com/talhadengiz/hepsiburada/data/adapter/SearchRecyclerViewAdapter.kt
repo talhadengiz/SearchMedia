@@ -48,16 +48,16 @@ class SearchRecyclerViewAdapter :
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val media = differ.currentList[position]
 
-        holder.binding.tvCollectionName.text = media.collectionName ?: media.trackName
-        holder.binding.tvCollectionPrice.text = "$" + media.collectionPrice.toString()
-        holder.binding.tvReleaseDate.text =
-            media.releaseDate?.convertToDateFormat(Format.FROM_DATE_FORMAT, Format.TO_DATE_FORMAT)
-
-
-        holder.binding.ivItem.downloadFromUrl(
-            media.artworkUrl100,
-            placeHolderProgressBar(holder.itemView.context)
-        )
+        holder.binding.apply {
+            tvCollectionName.text = media.collectionName ?: media.trackName
+            tvCollectionPrice.text = "$" + media.collectionPrice.toString()
+            tvReleaseDate.text =
+                media.releaseDate?.convertToDateFormat(Format.FROM_DATE_FORMAT, Format.TO_DATE_FORMAT)
+            ivItem.downloadFromUrl(
+                media.artworkUrl100,
+                placeHolderProgressBar(holder.itemView.context)
+            )
+        }
 
         holder.binding.ivItem.setOnClickListener {
             onItemClickListener?.let {

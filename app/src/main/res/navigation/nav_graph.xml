@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.talhadengiz.hepsiburada.ui.fragment.SearchFragment"
+        android:name="com.talhadengiz.searhmedia.ui.fragment.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
         <action
@@ -20,19 +20,19 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.talhadengiz.hepsiburada.ui.fragment.DetailFragment"
+        android:name="com.talhadengiz.searhmedia.ui.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="search"
-            app:argType="com.talhadengiz.hepsiburada.data.model.Result" />
+            app:argType="com.talhadengiz.searhmedia.data.model.Result" />
         <argument
             android:name="media"
             app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.talhadengiz.hepsiburada.ui.fragment.SplashFragment"
+        android:name="com.talhadengiz.searhmedia.ui.fragment.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.talhadengiz.hepsiburada.ui.fragment.OnboardingFragment"
+        android:name="com.talhadengiz.searhmedia.ui.fragment.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action

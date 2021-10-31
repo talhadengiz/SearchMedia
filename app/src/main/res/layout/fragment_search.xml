@@ -23,7 +23,7 @@
         android:textColorHint="@color/search_text_color"
         android:textSize="12sp" />
 
-    <com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
+    <com.talhadengiz.searhmedia.ui.custom.SwitchCategoryButton
         android:id="@+id/switchControl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

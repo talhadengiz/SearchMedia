@@ -10,6 +10,8 @@ interface BaseApi {
     @GET(Api.SEARCH)
     suspend fun getData(
         @Query("term") searchTerm: String,
-        @Query("media") media: String
+        @Query("media") media: String,
+        @Query("limit") limit: Int = 20,
+        @Query("offset") page: Int = 1
     ): Response<DataResponse>
 }

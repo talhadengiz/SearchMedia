@@ -60,7 +60,7 @@ class SearchFragment : Fragment() {
         binding?.rvData?.apply {
             adapter = searchAdapter
             layoutManager = GridLayoutManager(context, 2)
-            //addOnScrollListener(this@SearchFragment.scrollListener)
+            addOnScrollListener(this@SearchFragment.scrollListener)
         }
     }
 
@@ -73,8 +73,13 @@ class SearchFragment : Fragment() {
             job = MainScope().launch {
                 delay(Constants.DELAY_TIME)
                 editable?.let {
-                    //isLoading = true
-                    viewModel.getData(editable.toString(), media)
+                    viewModel.dataLiveData_ = null
+                    viewModel.page = 1
+                    isLoading = true
+                    term = it.toString()
+                    if(term.length>=2){
+                        viewModel.getData(editable.toString(), media)
+                    }
                 }
             }
         }
@@ -93,20 +98,23 @@ class SearchFragment : Fragment() {
         viewModel.dataLiveData.observe(viewLifecycleOwner, {
             it?.let {
                 isLoading = false
-                //searchAdapter.differ.submitList(it.results.toList())
-                searchAdapter.differ.submitList(it.results)
-                /*val totalPages = it.resultCount / 20 + 2
+                searchAdapter.differ.submitList(it.results.toList())
+                val totalPages = it.resultCount / 20 + 2
                 isLastPage = viewModel.page == totalPages
                 if(isLastPage){
                     binding?.rvData?.setPadding(0,0,0,0)
-                }*/
+                }
             }
         })
     }
 
     private fun onSwitchChanged(category: SwitchCategoryButton.Category) {
+        viewModel.dataLiveData_ = null
+        viewModel.page = 1
         media = category.queryName
-        viewModel.getData(binding?.etSearch?.text.toString(),media)
+        if(term.length>=2){
+            viewModel.getData(term,media)
+        }
     }
 
     var isLoading = false

@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.talhadengiz.hepsiburada.data.model.DataResponse
-import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.data.repository.DataRepository
 import com.talhadengiz.hepsiburada.data.source.RemoteDataSource
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import java.io.IOException
 
 class SearchFragmentVM : ViewModel() {
@@ -20,10 +18,10 @@ class SearchFragmentVM : ViewModel() {
 
     fun getData(searchQuery: String, media: String) = viewModelScope.launch {
         try {
-            var response = repository.remoteDataSource.getDataFromApi(searchQuery=searchQuery,media=media)
+            var response = repository.remoteDataSource.searchMedia(searchQuery=searchQuery,media=media,page = page)
             if (response.isSuccessful){
                 response.body()?.let{ resultResponse ->
-                   /* page++
+                    page++
                     if (dataLiveData_ == null){
                         dataLiveData_ = response.body()
                     }else{
@@ -32,9 +30,9 @@ class SearchFragmentVM : ViewModel() {
                         if (newData != null) {
                             oldData?.addAll(newData)
                         }
-                    }*/
-                    //dataLiveData.postValue(dataLiveData_ ?: resultResponse)
-                    dataLiveData.postValue(resultResponse)
+                    }
+                    dataLiveData.postValue(dataLiveData_ ?: resultResponse)
+                    //dataLiveData.postValue(resultResponse)
                 }
             }
         } catch (exception: IOException) {

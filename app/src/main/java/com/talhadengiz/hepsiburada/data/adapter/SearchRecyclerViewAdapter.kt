@@ -51,11 +51,10 @@ class SearchRecyclerViewAdapter :
 
         holder.binding.apply {
             tvCollectionName.text = media.collectionName ?: media.trackName
-            tvCollectionPrice.text = media.collectionPrice.toString() ?: media.price.toString()
-                    /*tvCollectionPrice.context.getString(
+            tvCollectionPrice.text = tvCollectionPrice.context.getString(
                 R.string.currency,
-                media.collectionPrice.toString() ?: media.price.toString()
-            )*/
+                (media.collectionPrice ?: media.price).toString()
+            )
             tvReleaseDate.text =
                 media.releaseDate?.convertToDateFormat(
                     Format.FROM_DATE_FORMAT,

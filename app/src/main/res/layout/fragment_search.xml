@@ -10,17 +10,17 @@
         android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_16"
         android:background="@drawable/bg_et_search"
         android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="16dp"
+        android:drawablePadding="@dimen/dp_16"
         android:hint="Search..."
-        android:padding="12dp"
-        android:textColorHint="#FFDA6317"
-        android:textColor="#FFDA6317"
-        android:textSize="12sp"/>
+        android:padding="@dimen/dp_12"
+        android:textColor="@color/search_text_color"
+        android:textColorHint="@color/search_text_color"
+        android:textSize="12sp" />
 
     <com.talhadengiz.hepsiburada.ui.custom.SwitchCategoryButton
         android:id="@+id/switchControl"
@@ -29,8 +29,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_data"
-        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_12" />
 </LinearLayout>

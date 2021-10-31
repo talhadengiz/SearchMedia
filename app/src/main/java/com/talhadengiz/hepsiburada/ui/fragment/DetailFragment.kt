@@ -60,9 +60,9 @@ class DetailFragment : Fragment() {
                         search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.longDescription
-                    vv.setVideoPath(search.previewUrl)
-                    vv.stopPlayback()
-                    vv.start()
+                    vvMedia.setVideoPath(search.previewUrl)
+                    vvMedia.stopPlayback()
+                    vvMedia.start()
                 }
             }
             "music" -> {
@@ -77,9 +77,9 @@ class DetailFragment : Fragment() {
                     tvReleaseDate.text =
                         search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
                     tvPrimaryGenreName.text = search.primaryGenreName
-                    vv.setVideoPath(search.previewUrl)
-                    vv.stopPlayback()
-                    vv.start()
+                    vvMedia.setVideoPath(search.previewUrl)
+                    vvMedia.stopPlayback()
+                    vvMedia.start()
                 }
             }
             "software" -> {

@@ -6,10 +6,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        android:layout_height="@dimen/dp_48"
+        android:layout_margin="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_8"
+        app:cardElevation="@dimen/dp_4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,13 +18,13 @@
 
             <TextView
                 android:id="@+id/tv_movie"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="@dimen/dp_8"
                 android:text="Movies"
                 android:foreground="@drawable/ripple_round_8_white"
                 android:textSize="14sp"
@@ -36,13 +36,13 @@
 
             <TextView
                 android:id="@+id/tv_music"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="@dimen/dp_8"
                 android:text="Music"
                 android:foreground="@drawable/ripple_round_8_white"
                 android:textSize="14sp"
@@ -54,13 +54,13 @@
 
             <TextView
                 android:id="@+id/tv_app"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="@dimen/dp_8"
                 android:text="Apps"
                 android:foreground="@drawable/ripple_round_8_white"
                 android:textSize="14sp"
@@ -78,7 +78,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="@dimen/dp_8"
                 android:text="Books"
                 android:foreground="@drawable/ripple_round_8_white"
                 android:textSize="14sp"
@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/tv_selection"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="true"

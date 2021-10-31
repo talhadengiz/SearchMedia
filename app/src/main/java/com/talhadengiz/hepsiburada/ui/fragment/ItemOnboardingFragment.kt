@@ -23,7 +23,7 @@ class ItemOnboardingFragment(private val resId: Int, private val title: String) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.imageView.setImageResource(resId)
-        binding.txtTitle.text = title
+        binding.ivItemOnboarding.setImageResource(resId)
+        binding.tvTitle.text = title
     }
 }

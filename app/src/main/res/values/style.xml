@@ -22,4 +22,10 @@
         <item name="android:textColor">@color/orange</item>
         <item name="android:textSize">12sp</item>
     </style>
+    <style name="search_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/search_text_color</item>
+        <item name="android:background">@drawable/bg_et_search</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import androidx.core.widget.addTextChangedListener
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,8 +17,8 @@ import com.talhadengiz.searhmedia.R
 import com.talhadengiz.searhmedia.data.adapter.SearchRecyclerViewAdapter
 import com.talhadengiz.searhmedia.databinding.FragmentSearchBinding
 import com.talhadengiz.searhmedia.ui.custom.SwitchCategoryButton
-import com.talhadengiz.searhmedia.viewModel.SearchFragmentVM
 import com.talhadengiz.searhmedia.util.Constants
+import com.talhadengiz.searhmedia.viewModel.SearchFragmentVM
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -31,8 +31,8 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding
     private lateinit var searchAdapter: SearchRecyclerViewAdapter
-    private lateinit var media:String
-    private var term:String = ""
+    private lateinit var media: String
+    private var term: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +47,7 @@ class SearchFragment : Fragment() {
         init()
         setupRecyclerview()
         eventHandler()
+        searchTerm()
         observe()
     }
 
@@ -54,7 +55,7 @@ class SearchFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(SearchFragmentVM::class.java)
     }
 
-    private fun setupRecyclerview(){
+    private fun setupRecyclerview() {
         searchAdapter = SearchRecyclerViewAdapter()
         binding?.rvData?.apply {
             adapter = searchAdapter
@@ -66,8 +67,7 @@ class SearchFragment : Fragment() {
     private fun eventHandler() {
         binding?.switchControl?.onSelectionChanged = ::onSwitchChanged
         binding?.switchControl?.setCategory(0)
-        var job: Job? = null
-        binding?.etSearch?.addTextChangedListener { editable ->
+        /*binding?.etSearch?.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
                 delay(Constants.DELAY_TIME)
@@ -81,12 +81,12 @@ class SearchFragment : Fragment() {
                     }
                 }
             }
-        }
+        }*/
 
         searchAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("search", it)
-                putString("media",media)
+                putString("media", media)
             }
             findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
         }
@@ -100,9 +100,38 @@ class SearchFragment : Fragment() {
                 searchAdapter.differ.submitList(it.results.toList())
                 val totalPages = it.resultCount / Constants.TOTAL_ITEM + 2
                 isLastPage = viewModel.page == totalPages
-                if(isLastPage){
-                    binding?.rvData?.setPadding(0,0,0,0)
+                if (isLastPage) {
+                    binding?.rvData?.setPadding(0, 0, 0, 0)
                 }
+            }
+        })
+    }
+
+    private fun searchTerm() {
+        var job: Job? = null
+        binding?.swSearch?.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(Constants.DELAY_TIME)
+                    newText.let {
+                        viewModel.dataLiveData_ = null
+                        viewModel.page = 1
+                        isLoading = true
+                        if (it != null) {
+                            term = it
+                        }
+                        if (term.length >= 2) {
+                            viewModel.getData(term, media)
+                        }
+                    }
+                }
+                return true
             }
         })
     }
@@ -111,8 +140,8 @@ class SearchFragment : Fragment() {
         viewModel.dataLiveData_ = null
         viewModel.page = 1
         media = category.queryName
-        if(term.length>=2){
-            viewModel.getData(term,media)
+        if (term.length >= 2) {
+            viewModel.getData(term, media)
         }
     }
 
@@ -120,10 +149,10 @@ class SearchFragment : Fragment() {
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object: RecyclerView.OnScrollListener(){
+    val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
         }
@@ -139,8 +168,9 @@ class SearchFragment : Fragment() {
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= Constants.TOTAL_ITEM
-            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
-            if(shouldPaginate){
+            val shouldPaginate =
+                isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
+            if (shouldPaginate) {
                 isLoading = true
                 viewModel.getData(term, media)
                 isScrolling = false

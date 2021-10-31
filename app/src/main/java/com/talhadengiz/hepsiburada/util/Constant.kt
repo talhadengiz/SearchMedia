@@ -12,4 +12,5 @@ object Format {
 
 object Constants {
     const val DELAY_TIME = 500L
+    const val TOTAL_ITEM = 20
 }

@@ -98,7 +98,7 @@ class SearchFragment : Fragment() {
             it?.let {
                 isLoading = false
                 searchAdapter.differ.submitList(it.results.toList())
-                val totalPages = it.resultCount / 20 + 2
+                val totalPages = it.resultCount / Constants.TOTAL_ITEM + 2
                 isLastPage = viewModel.page == totalPages
                 if(isLastPage){
                     binding?.rvData?.setPadding(0,0,0,0)
@@ -138,7 +138,7 @@ class SearchFragment : Fragment() {
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
             val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= 20
+            val isTotalMoreThanVisible = totalItemCount >= Constants.TOTAL_ITEM
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate){
                 isLoading = true

@@ -32,7 +32,6 @@ class SearchFragmentVM : ViewModel() {
                         }
                     }
                     dataLiveData.postValue(dataLiveData_ ?: resultResponse)
-                    //dataLiveData.postValue(resultResponse)
                 }
             }
         } catch (exception: IOException) {

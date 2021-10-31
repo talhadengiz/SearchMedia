@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.model.DataResponse
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.ItemRecyclerviewBinding
@@ -50,9 +51,16 @@ class SearchRecyclerViewAdapter :
 
         holder.binding.apply {
             tvCollectionName.text = media.collectionName ?: media.trackName
-            tvCollectionPrice.text = "$" + media.collectionPrice.toString()
+            tvCollectionPrice.text = media.collectionPrice.toString() ?: media.price.toString()
+                    /*tvCollectionPrice.context.getString(
+                R.string.currency,
+                media.collectionPrice.toString() ?: media.price.toString()
+            )*/
             tvReleaseDate.text =
-                media.releaseDate?.convertToDateFormat(Format.FROM_DATE_FORMAT, Format.TO_DATE_FORMAT)
+                media.releaseDate?.convertToDateFormat(
+                    Format.FROM_DATE_FORMAT,
+                    Format.TO_DATE_FORMAT
+                )
             ivItem.downloadFromUrl(
                 media.artworkUrl100,
                 placeHolderProgressBar(holder.itemView.context)

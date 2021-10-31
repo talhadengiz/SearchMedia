@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.talhadengiz.hepsiburada.R
 import com.talhadengiz.hepsiburada.data.model.Result
 import com.talhadengiz.hepsiburada.databinding.FragmentDetailBinding
 import com.talhadengiz.hepsiburada.viewModel.DetailFragmentVM
@@ -57,7 +58,8 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.collectionName ?: search.trackName
-                    detailCardview.tvCollectionPrice.text = "$" + search.collectionPrice.toString()
+                    detailCardview.tvCollectionPrice.text =
+                        getString(R.string.currency, search.collectionPrice.toString())
                     detailCardview.tvReleaseDate.text =
                         search.releaseDate?.convertToDateFormat(
                             Format.FROM_DATE_FORMAT,
@@ -78,7 +80,7 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.collectionName
-                    detailCardview.tvCollectionPrice.text = search.collectionPrice.toString()
+                    detailCardview.tvCollectionPrice.text = getString(R.string.currency, search.collectionPrice.toString())
                     detailCardview.tvReleaseDate.text = search.releaseDate?.convertToDateFormat(
                         Format.FROM_DATE_FORMAT,
                         Format.TO_DATE_FORMAT
@@ -113,7 +115,7 @@ class DetailFragment : Fragment() {
                     )
 
                     detailCardview.tvCollectionName.text = search.trackName
-                    detailCardview.tvCollectionPrice.text = "$" + search.price.toString()
+                    detailCardview.tvCollectionPrice.text = getString(R.string.currency, search.price.toString())
                     detailCardview.tvReleaseDate.text = search.releaseDate?.convertToDateFormat(
                         Format.FROM_DATE_FORMAT,
                         Format.TO_DATE_FORMAT

@@ -11,54 +11,32 @@
         android:id="@+id/vv_media"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_250"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/img_music"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/iv_item_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp_200"
-        android:paddingTop="@dimen/dp_10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vv_media"/>
-
-    <TextView
-        android:id="@+id/tv_collection_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_4"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/iv_item_detail"
-        app:layout_constraintTop_toBottomOf="@id/vv_media"/>
-
-    <TextView
-        android:id="@+id/tv_collection_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/iv_item_detail"
-        app:layout_constraintTop_toBottomOf="@id/tv_collection_name"/>
-
-    <TextView
-        android:id="@+id/tv_release_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_8"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/iv_item_detail"
-        app:layout_constraintTop_toBottomOf="@id/tv_collection_price"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_primary_genre_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vv_media"
+        android:textColor="@color/orange"
         android:layout_width="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_8"
-        android:textSize="16sp"
+        android:textSize="24sp" />
+
+    <include
+        android:id="@+id/detail_cardview"
+        layout="@layout/item_detail_cardview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        app:layout_constraintTop_toBottomOf="@+id/tv_primary_genre_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_item_detail"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

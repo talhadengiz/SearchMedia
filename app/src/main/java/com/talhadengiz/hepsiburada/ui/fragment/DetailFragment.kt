@@ -66,14 +66,14 @@ class DetailFragment : Fragment() {
             }
             "music" -> {
                 binding.iMusic.apply {
-                    ivItemDetail.downloadFromUrl(
+                    detailCardview.ivItemDetail.downloadFromUrl(
                         search.artworkUrl100,
                         placeHolderProgressBar(requireContext())
                     )
 
-                    tvCollectionName.text = search.collectionName
-                    tvCollectionPrice.text = search.collectionPrice.toString()
-                    tvReleaseDate.text =
+                    detailCardview.tvCollectionName.text = search.collectionName
+                    detailCardview.tvCollectionPrice.text = search.collectionPrice.toString()
+                    detailCardview.tvReleaseDate.text =
                         search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
                     tvPrimaryGenreName.text = search.primaryGenreName
                     vvMedia.setVideoPath(search.previewUrl)

@@ -15,17 +15,27 @@ import java.io.IOException
 class SearchFragmentVM : ViewModel() {
     private val repository = DataRepository(RemoteDataSource())
     var dataLiveData = MutableLiveData<DataResponse>()
+    var dataLiveData_ : DataResponse?=null
+    var page = 1
 
     fun getData(searchQuery: String, media: String) = viewModelScope.launch {
         try {
-            var response:Response<DataResponse>?=null
-            if(searchQuery.length>=2){
-                response = repository.remoteDataSource.getDataFromApi(searchQuery,media)
-            }
-            Log.d("Test", "Data: ${response?.body()}")
-
-            if (response?.isSuccessful == true) {
-                dataLiveData.postValue(response?.body())
+            var response = repository.remoteDataSource.getDataFromApi(searchQuery=searchQuery,media=media)
+            if (response.isSuccessful){
+                response.body()?.let{ resultResponse ->
+                   /* page++
+                    if (dataLiveData_ == null){
+                        dataLiveData_ = response.body()
+                    }else{
+                        val oldData = dataLiveData_?.results
+                        val newData = response.body()?.results
+                        if (newData != null) {
+                            oldData?.addAll(newData)
+                        }
+                    }*/
+                    //dataLiveData.postValue(dataLiveData_ ?: resultResponse)
+                    dataLiveData.postValue(resultResponse)
+                }
             }
         } catch (exception: IOException) {
             Log.d("Test", "exception: $exception")

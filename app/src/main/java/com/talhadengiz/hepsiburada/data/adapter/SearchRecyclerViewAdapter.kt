@@ -2,6 +2,8 @@ package com.talhadengiz.hepsiburada.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.talhadengiz.hepsiburada.data.model.DataResponse
 import com.talhadengiz.hepsiburada.data.model.Result
@@ -13,12 +15,22 @@ import com.talhadengiz.hepsiburada.util.placeHolderProgressBar
 class SearchRecyclerViewAdapter :
     RecyclerView.Adapter<SearchRecyclerViewAdapter.SearchViewHolder>() {
 
-    var resultList: List<Result>? = listOf()
-
     class SearchViewHolder(val binding: ItemRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
     }
+
+    private val differCallback = object : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem.trackId == newItem.trackId
+        }
+
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         return SearchViewHolder(
@@ -31,23 +43,26 @@ class SearchRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.binding.tvCollectionName.text = resultList?.get(position)?.collectionName
-        holder.binding.tvCollectionPrice.text = resultList?.get(position)?.collectionPrice.toString()
-        holder.binding.tvReleaseDate.text = resultList?.get(position)?.releaseDate?.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss","dd.MM.yyyy")
+        val media = differ.currentList[position]
+
+        holder.binding.tvCollectionName.text = media.collectionName
+        holder.binding.tvCollectionPrice.text = media.collectionPrice.toString()
+        holder.binding.tvReleaseDate.text = media.releaseDate?.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss","dd.MM.yyyy")
+
 
         holder.binding.ivItem.downloadFromUrl(
-            resultList?.get(position)?.artworkUrl100,
+            media.artworkUrl100,
             placeHolderProgressBar(holder.itemView.context)
         )
 
         holder.binding.ivItem.setOnClickListener {
             onItemClickListener?.let {
-                resultList?.get(position)?.let { it1 -> it(it1) }
+                it(media)
             }
         }
     }
 
-    override fun getItemCount(): Int = resultList!!.size
+    override fun getItemCount(): Int = differ.currentList.size
 
     private var onItemClickListener: ((Result) -> Unit)? = null
 

@@ -9,7 +9,6 @@ interface BaseApi {
     @GET("search?")
     suspend fun getData(
         @Query("term") searchTerm: String,
-        @Query("limit") limit: Int? = 20,
         @Query("media") media: String
     ): Response<DataResponse>
 }

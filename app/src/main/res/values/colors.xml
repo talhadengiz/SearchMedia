@@ -12,4 +12,6 @@
     <color name="search_text_color">#FFDA6317</color>
     <color name="page_indicator_color">#ff5c0e</color>
     <color name="indicator_color">#50bde2</color>
+    <color name="bg_switch_category">#4bc7ec</color>
+    <color name="orange">#f26322</color>
 </resources>

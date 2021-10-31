@@ -20,6 +20,7 @@
     <dimen name="dp_60">60dp</dimen>
     <dimen name="dp_64">64dp</dimen>
     <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_130">130dp</dimen>
     <dimen name="dp_152">152dp</dimen>
     <dimen name="dp_200">200dp</dimen>

@@ -1,5 +1,6 @@
 package com.talhadengiz.hepsiburada.data.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -42,11 +43,12 @@ class SearchRecyclerViewAdapter :
         )
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val media = differ.currentList[position]
 
-        holder.binding.tvCollectionName.text = media.collectionName
-        holder.binding.tvCollectionPrice.text = media.collectionPrice.toString()
+        holder.binding.tvCollectionName.text = media.collectionName ?: media.trackName
+        holder.binding.tvCollectionPrice.text = "$" + media.collectionPrice.toString()
         holder.binding.tvReleaseDate.text = media.releaseDate?.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss","dd.MM.yyyy")
 
 

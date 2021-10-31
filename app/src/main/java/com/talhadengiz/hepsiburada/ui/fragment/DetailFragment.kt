@@ -1,6 +1,5 @@
 package com.talhadengiz.hepsiburada.ui.fragment
 
-import android.media.session.MediaController
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,14 +48,14 @@ class DetailFragment : Fragment() {
         when (media) {
             "movie" -> {
                 binding.iMovie.apply {
-                    ivItemDetail.downloadFromUrl(
+                    detailCardview.ivItemDetail.downloadFromUrl(
                         search.artworkUrl100,
                         placeHolderProgressBar(requireContext())
                     )
 
-                    tvCollectionName.text = search.collectionName
-                    tvCollectionPrice.text = search.collectionPrice.toString()
-                    tvReleaseDate.text =
+                    detailCardview.tvCollectionName.text = search.collectionName
+                    detailCardview.tvCollectionPrice.text = "$"+search.collectionPrice.toString()
+                    detailCardview.tvReleaseDate.text =
                         search.releaseDate.convertToDateFormat("yyyy-MM-dd'T'HH:mm:sss", "dd.MM.yyyy")
                     tvPrimaryGenreName.text = search.primaryGenreName
                     tvLongDescription.text = search.longDescription

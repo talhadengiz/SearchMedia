@@ -1,4 +1,4 @@
-# Hepsiburada Mobile Team Case Study 
+# Search Media
 
 ## Project
 
